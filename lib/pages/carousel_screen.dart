@@ -10,12 +10,26 @@ class CarouselScreen extends StatelessWidget {
     PageController controller = PageController(
       initialPage: 0,
     );
-    return PageView(
-      controller: controller,
-      scrollDirection: direction,
+    return Stack(
       children: [
-        for(var screen in screens)
-          screen,
+        PageView(
+          controller: controller,
+          scrollDirection: direction,
+          children: [
+            for(var screen in screens)
+              screen,
+          ],
+        ),
+        Container(
+          alignment: Alignment.bottomCenter,
+          margin: const EdgeInsets.fromLTRB(0, 0, 150, 50),
+          child: FloatingActionButton(child: const Icon(Icons.thumb_down),onPressed: () {}),
+        ),
+        Container(
+          alignment: Alignment.bottomCenter,
+          margin: const EdgeInsets.fromLTRB(150, 0, 0, 50),
+          child: FloatingActionButton(child: const Icon(Icons.thumb_up),onPressed: () {}),
+        ),
       ],
     );
   }
